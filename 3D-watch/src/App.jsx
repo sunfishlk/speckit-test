@@ -5,6 +5,7 @@
 
 import { ViewerProvider } from './context/ViewerContext'
 import ErrorBoundary from './components/ErrorBoundary'
+import Viewer3D from './components/Viewer3D'
 
 /**
  * Main App Component
@@ -16,21 +17,10 @@ function App() {
     <ErrorBoundary>
       <ViewerProvider>
         <div style={styles.container}>
-          <h1 style={styles.heading}>3D House Viewer</h1>
-          <p style={styles.message}>
-            Application structure is ready. 3D viewer will be implemented in Phase 3.
-          </p>
+          <Viewer3D />
           <div style={styles.info}>
-            <h2 style={styles.subheading}>✅ Completed:</h2>
-            <ul style={styles.list}>
-              <li>Phase 1: Project setup and configuration</li>
-              <li>Phase 2: Foundational infrastructure</li>
-            </ul>
-            <h2 style={styles.subheading}>🔄 Next Steps:</h2>
-            <ul style={styles.list}>
-              <li>Run <code style={styles.code}>npm install</code> to install dependencies</li>
-              <li>Implement Phase 3: User Story 1 (Basic 3D Viewing)</li>
-            </ul>
+            <h1 style={styles.title}>3D House Viewer</h1>
+            <p style={styles.subtitle}>MVP - User Story 1: Basic 3D Viewing</p>
           </div>
         </div>
       </ViewerProvider>
@@ -42,47 +32,28 @@ const styles = {
   container: {
     width: '100%',
     height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '2rem',
-    backgroundColor: '#f5f5f5'
-  },
-  heading: {
-    fontSize: '2.5rem',
-    marginBottom: '1rem',
-    color: '#333'
-  },
-  message: {
-    fontSize: '1.2rem',
-    marginBottom: '2rem',
-    color: '#666'
+    position: 'relative'
   },
   info: {
-    backgroundColor: 'white',
-    padding: '2rem',
+    position: 'absolute',
+    top: '20px',
+    left: '20px',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    padding: '1rem 1.5rem',
     borderRadius: '8px',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-    maxWidth: '600px'
+    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+    zIndex: 10,
+    maxWidth: '400px'
   },
-  subheading: {
-    fontSize: '1.3rem',
-    marginTop: '1rem',
-    marginBottom: '0.5rem',
-    color: '#444'
+  title: {
+    margin: 0,
+    fontSize: '1.5rem',
+    color: '#333'
   },
-  list: {
-    listStylePosition: 'inside',
-    lineHeight: '1.8',
-    color: '#555'
-  },
-  code: {
-    backgroundColor: '#f0f0f0',
-    padding: '0.2rem 0.4rem',
-    borderRadius: '3px',
-    fontFamily: 'monospace',
-    fontSize: '0.9rem'
+  subtitle: {
+    margin: '0.5rem 0 0 0',
+    fontSize: '0.9rem',
+    color: '#666'
   }
 }
 

@@ -64,18 +64,18 @@ Single project structure: `src/`, `tests/`, `public/` at repository root per pla
 
 > **NOTE: Setup performance benchmarks BEFORE implementing core features**
 
-- [ ] T016 [P] [US1] Create FPS benchmark in tests/performance/fps-benchmark.js (measure FPS during initial render, record baseline metrics)
-- [ ] T017 [P] [US1] Create load time benchmark in tests/performance/load-benchmark.js (measure model fetch time, parse time, first render time, validate <3s target)
-- [ ] T018 [P] [US1] Create memory benchmark in tests/performance/memory-benchmark.js (measure heap size before/after model load, detect memory leaks, validate <1GB desktop/<500MB mobile)
+- [X] T016 [P] [US1] Create FPS benchmark in tests/performance/fps-benchmark.js (measure FPS during initial render, record baseline metrics)
+- [X] T017 [P] [US1] Create load time benchmark in tests/performance/load-benchmark.js (measure model fetch time, parse time, first render time, validate <3s target)
+- [X] T018 [P] [US1] Create memory benchmark in tests/performance/memory-benchmark.js (measure heap size before/after model load, detect memory leaks, validate <1GB desktop/<500MB mobile)
 
 ### Implementation for User Story 1
 
-- [ ] T019 [P] [US1] Implement ModelLoader class in src/loaders/model-loader.js per contracts/model-loader.md (GLTFLoader with Draco support, load() method, loadWithMetadata() method, progress tracking, error handling, caching)
-- [ ] T020 [P] [US1] Implement SceneManager class in src/core/scene-manager.js per contracts/scene-manager.md (scene initialization, lighting setup per SceneConfiguration from data-model.md, addObject/removeObject methods, dispose method)
-- [ ] T021 [P] [US1] Implement RendererManager class in src/core/renderer-manager.js (WebGL renderer configuration, antialias/shadow settings, pixel ratio handling, resize handling)
-- [ ] T022 [US1] Create Viewer3D component in src/components/Viewer3D.jsx (Canvas from React Three Fiber, integrate SceneManager, setup default camera, render loop, WebGL error handling)
-- [ ] T023 [US1] Configure default viewpoint in src/config/viewpoints.js (define DEFAULT_VIEWPOINT with position, target, fov per Viewpoint entity from data-model.md)
-- [ ] T024 [US1] Create sample HouseModel configuration in src/config/models.js (define default house model metadata per HouseModel entity from data-model.md)
+- [X] T019 [P] [US1] Implement ModelLoader class in src/loaders/model-loader.js per contracts/model-loader.md (GLTFLoader with Draco support, load() method, loadWithMetadata() method, progress tracking, error handling, caching)
+- [X] T020 [P] [US1] Implement SceneManager class in src/core/scene-manager.js per contracts/scene-manager.md (scene initialization, lighting setup per SceneConfiguration from data-model.md, addObject/removeObject methods, dispose method)
+- [X] T021 [P] [US1] Implement RendererManager class in src/core/renderer-manager.js (WebGL renderer configuration, antialias/shadow settings, pixel ratio handling, resize handling)
+- [X] T022 [US1] Create Viewer3D component in src/components/Viewer3D.jsx (Canvas from React Three Fiber, integrate SceneManager, setup default camera, render loop, WebGL error handling)
+- [X] T023 [US1] Configure default viewpoint in src/config/viewpoints.js (define DEFAULT_VIEWPOINT with position, target, fov per Viewpoint entity from data-model.md)
+- [X] T024 [US1] Create sample HouseModel configuration in src/config/models.js (define default house model metadata per HouseModel entity from data-model.md)
 - [ ] T025 [US1] Integrate ModelLoader into Viewer3D component (load model on mount, display LoadingIndicator during fetch, handle load errors with ErrorBoundary, add loaded model to scene)
 - [ ] T026 [US1] Implement responsive canvas sizing in src/components/Viewer3D.jsx (handle window resize, maintain aspect ratio, adjust renderer pixel ratio based on device)
 - [ ] T027 [US1] Create main App.jsx entry point (setup ViewerContext provider, render Viewer3D, configure initial model URL)
