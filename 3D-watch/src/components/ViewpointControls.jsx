@@ -120,7 +120,7 @@ function ViewpointControls({ onViewpointSelect, disabled = false }) {
           {VIEWPOINTS.find(vp => vp.id === hoveredViewpoint)?.description}
         </div>
       )}
-    </div>
+    </nav>
   )
 }
 
