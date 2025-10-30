@@ -76,10 +76,10 @@ Single project structure: `src/`, `tests/`, `public/` at repository root per pla
 - [X] T022 [US1] Create Viewer3D component in src/components/Viewer3D.jsx (Canvas from React Three Fiber, integrate SceneManager, setup default camera, render loop, WebGL error handling)
 - [X] T023 [US1] Configure default viewpoint in src/config/viewpoints.js (define DEFAULT_VIEWPOINT with position, target, fov per Viewpoint entity from data-model.md)
 - [X] T024 [US1] Create sample HouseModel configuration in src/config/models.js (define default house model metadata per HouseModel entity from data-model.md)
-- [ ] T025 [US1] Integrate ModelLoader into Viewer3D component (load model on mount, display LoadingIndicator during fetch, handle load errors with ErrorBoundary, add loaded model to scene)
-- [ ] T026 [US1] Implement responsive canvas sizing in src/components/Viewer3D.jsx (handle window resize, maintain aspect ratio, adjust renderer pixel ratio based on device)
-- [ ] T027 [US1] Create main App.jsx entry point (setup ViewerContext provider, render Viewer3D, configure initial model URL)
-- [ ] T028 [US1] Add loading state management to ViewerContext (implement LoadingState transitions per data-model.md: idle → loading → loaded/error)
+- [X] T025 [US1] Integrate ModelLoader into Viewer3D component (load model on mount, display LoadingIndicator during fetch, handle load errors with ErrorBoundary, add loaded model to scene)
+- [X] T026 [US1] Implement responsive canvas sizing in src/components/Viewer3D.jsx (handle window resize, maintain aspect ratio, adjust renderer pixel ratio based on device)
+- [X] T027 [US1] Create main App.jsx entry point (setup ViewerContext provider, render Viewer3D, configure initial model URL)
+- [X] T028 [US1] Add loading state management to ViewerContext (implement LoadingState transitions per data-model.md: idle → loading → loaded/error)
 - [ ] T029 [US1] Run FPS, load time, and memory benchmarks for User Story 1 (validate 30+ FPS, <3s load, memory within limits)
 
 **Checkpoint**: At this point, User Story 1 should be fully functional - 3D house model loads and renders from default viewpoint, meets performance targets
