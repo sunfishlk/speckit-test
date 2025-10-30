@@ -7,9 +7,9 @@
 
 3. /speckit.plan 描述使用的技术栈
 
-4. /speckit.tasks
+4. /speckit.tasks 直接执行命令，生成tasks.md可执行的逻辑型任务清单
 
-5. /speckit.implement
+5. /speckit.implement 直接执行命令，开始生成代码
 
 
 
