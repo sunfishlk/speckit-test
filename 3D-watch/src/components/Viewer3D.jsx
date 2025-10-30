@@ -3,12 +3,16 @@
  */
 
 import { useEffect, useRef, useState } from 'react'
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useThree } from '@react-three/fiber'
 import { useViewer } from '../context/ViewerContext'
 import LoadingIndicator from './LoadingIndicator'
+import ViewpointControls from './ViewpointControls'
 import { isWebGLSupported } from '../utils/webgl-detection'
 import { ERROR_MESSAGES, LOADING_STATES } from '../utils/constants'
 import { DEFAULT_MODEL } from '../config/models'
+import OrbitController from '../controllers/orbit-controller.jsx'
+import { calculateCameraConstraints } from '../utils/camera-utils'
+import { CameraController } from '../core/camera-controller'
 
 /**
  * Viewer3D Component
@@ -20,6 +24,8 @@ import { DEFAULT_MODEL } from '../config/models'
 function Viewer3D({ modelUrl }) {
   const { state, actions } = useViewer()
   const [webglError, setWebglError] = useState(null)
+  const [cameraConstraints, setCameraConstraints] = useState(null)
+  const cameraControllerRef = useRef(null)
 
   useEffect(() => {
     if (!isWebGLSupported()) {
@@ -65,7 +71,21 @@ function Viewer3D({ modelUrl }) {
           powerPreference: 'high-performance'
         }}
       >
-        <Scene modelUrl={modelUrl || DEFAULT_MODEL.url} />
+        <Scene 
+          modelUrl={modelUrl || DEFAULT_MODEL.url} 
+          onModelLoaded={(boundingBox) => {
+            const constraints = calculateCameraConstraints(boundingBox)
+            setCameraConstraints(constraints)
+          }}
+          controllerRef={cameraControllerRef}
+          constraints={cameraConstraints}
+        />
+        {cameraConstraints && (
+          <OrbitController 
+            constraints={cameraConstraints}
+            enabled={!state.camera.isAnimating}
+          />
+        )}
       </Canvas>
 
       {showLoading && (
@@ -75,8 +95,60 @@ function Viewer3D({ modelUrl }) {
           show={true}
         />
       )}
+
+      {cameraControllerRef.current && (
+        <ViewpointControls
+          onViewpointSelect={async (viewpoint) => {
+            actions.setCameraAnimating(true)
+            actions.setActiveViewpoint(viewpoint.id)
+            await cameraControllerRef.current.setViewpoint(viewpoint)
+            actions.setCameraAnimating(false)
+          }}
+          disabled={false}
+        />
+      )}
     </div>
   )
+}
+
+/**
+ * CameraSetup Component
+ * Initializes CameraController
+ * @param {Object} props
+ * @param {React.MutableRefObject} props.controllerRef - Ref to store controller
+ * @param {Object} props.constraints - Camera constraints
+ * @returns {null}
+ */
+function CameraSetup({ controllerRef, constraints }) {
+  const { camera } = useThree()
+  const { actions } = useViewer()
+
+  useEffect(() => {
+    if (!constraints) return
+
+    const controller = new CameraController(camera, constraints)
+    controllerRef.current = controller
+
+    controller.on('viewpoint-start', ({ viewpoint }) => {
+      actions.setCameraAnimating(true)
+    })
+
+    controller.on('viewpoint-complete', ({ viewpoint }) => {
+      actions.setCameraAnimating(false)
+      actions.setActiveViewpoint(viewpoint.id)
+    })
+
+    controller.on('camera-move', ({ position, target }) => {
+      actions.updateCamera({ position, target })
+    })
+
+    return () => {
+      controller.dispose()
+      controllerRef.current = null
+    }
+  }, [camera, constraints])
+
+  return null
 }
 
 /**
@@ -84,11 +156,24 @@ function Viewer3D({ modelUrl }) {
  * Contains 3D scene elements
  * @param {Object} props
  * @param {string} props.modelUrl - Model URL
+ * @param {Function} [props.onModelLoaded] - Callback when model loads with bounding box
+ * @param {React.MutableRefObject} props.controllerRef - Camera controller ref
+ * @param {Object} props.constraints - Camera constraints
  * @returns {JSX.Element}
  */
-function Scene({ modelUrl }) {
+function Scene({ modelUrl, onModelLoaded, controllerRef, constraints }) {
+  useEffect(() => {
+    if (onModelLoaded) {
+      const defaultBoundingBox = {
+        min: { x: -10, y: 0, z: -10 },
+        max: { x: 10, y: 10, z: 10 }
+      }
+      onModelLoaded(defaultBoundingBox)
+    }
+  }, [])
   return (
     <>
+      <CameraSetup controllerRef={controllerRef} constraints={constraints} />
       <color attach="background" args={['#87ceeb']} />
       
       <ambientLight intensity={0.5} />
@@ -130,7 +215,8 @@ const styles = {
   canvas: {
     width: '100%',
     height: '100%',
-    display: 'block'
+    display: 'block',
+    cursor: 'grab'
   },
   errorContainer: {
     width: '100%',

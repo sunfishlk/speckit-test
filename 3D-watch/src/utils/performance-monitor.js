@@ -211,7 +211,7 @@ export class PerformanceMonitor {
    */
   checkPerformance(targets) {
     const { minFPS, maxMemoryMB } = targets
-    const meets FPSTarget = this.metrics.fps >= minFPS
+    const meetsFPSTarget = this.metrics.fps >= minFPS
     const meetsMemoryTarget = this.metrics.memory <= maxMemoryMB
 
     return {

@@ -94,18 +94,18 @@ Single project structure: `src/`, `tests/`, `public/` at repository root per pla
 
 ### Performance Tests for User Story 2 (MANDATORY)
 
-- [ ] T030 [P] [US2] Extend FPS benchmark in tests/performance/fps-benchmark.js (measure FPS during orbit, zoom, pan interactions, validate 30+ FPS mid-range/60 FPS desktop targets)
-- [ ] T031 [P] [US2] Create interaction response benchmark in tests/performance/interaction-benchmark.js (measure input latency for mouse events, validate <100ms visual feedback)
+- [X] T030 [P] [US2] Extend FPS benchmark in tests/performance/fps-benchmark.js (measure FPS during orbit, zoom, pan interactions, validate 30+ FPS mid-range/60 FPS desktop targets)
+- [X] T031 [P] [US2] Create interaction response benchmark in tests/performance/interaction-benchmark.js (measure input latency for mouse events, validate <100ms visual feedback)
 
 ### Implementation for User Story 2
 
-- [ ] T032 [US2] Implement OrbitController wrapper in src/controllers/orbit-controller.js (integrate @react-three/drei OrbitControls, configure damping, set zoom limits from CameraConstraints, set pan bounds, enable right-click pan)
-- [ ] T033 [US2] Calculate camera constraints from model bounding box in src/utils/camera-utils.js (compute minDistance/maxDistance based on model size, compute panBounds from boundingBox, prevent camera going underground)
-- [ ] T034 [US2] Integrate OrbitControls into Viewer3D component (add OrbitControls from Drei to Canvas, pass camera constraints, handle enablePan setting)
-- [ ] T035 [US2] Implement visual feedback for interactions in src/components/Viewer3D.jsx (cursor changes on hover, damping configuration for smooth stop)
-- [ ] T036 [US2] Update CameraState in ViewerContext during manual control (sync camera position/target on user interaction, set activeViewpoint to null when user manually controls camera)
-- [ ] T037 [US2] Add constraint validation in src/utils/camera-utils.js (enforce minDistance/maxDistance, enforce polar angle limits, enforce pan bounds)
-- [ ] T038 [US2] Implement debounced performance monitoring in src/utils/performance-monitor.js (throttle Stats.js updates to 16ms, display FPS overlay with backtick key toggle)
+- [X] T032 [US2] Implement OrbitController wrapper in src/controllers/orbit-controller.js (integrate @react-three/drei OrbitControls, configure damping, set zoom limits from CameraConstraints, set pan bounds, enable right-click pan)
+- [X] T033 [US2] Calculate camera constraints from model bounding box in src/utils/camera-utils.js (compute minDistance/maxDistance based on model size, compute panBounds from boundingBox, prevent camera going underground)
+- [X] T034 [US2] Integrate OrbitControls into Viewer3D component (add OrbitControls from Drei to Canvas, pass camera constraints, handle enablePan setting)
+- [X] T035 [US2] Implement visual feedback for interactions in src/components/Viewer3D.jsx (cursor changes on hover, damping configuration for smooth stop)
+- [X] T036 [US2] Update CameraState in ViewerContext during manual control (sync camera position/target on user interaction, set activeViewpoint to null when user manually controls camera)
+- [X] T037 [US2] Add constraint validation in src/utils/camera-utils.js (enforce minDistance/maxDistance, enforce polar angle limits, enforce pan bounds)
+- [X] T038 [US2] Implement debounced performance monitoring in src/utils/performance-monitor.js (throttle Stats.js updates to 16ms, display FPS overlay with backtick key toggle)
 - [ ] T039 [US2] Run FPS and interaction benchmarks for User Story 2 (validate smooth 30+ FPS during all mouse interactions, <100ms response time)
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently - users can view house model and interactively explore it with mouse
@@ -120,19 +120,19 @@ Single project structure: `src/`, `tests/`, `public/` at repository root per pla
 
 ### Performance Tests for User Story 3 (MANDATORY)
 
-- [ ] T040 [P] [US3] Create viewpoint transition benchmark in tests/performance/transition-benchmark.js (measure animation duration, measure frame rate during transitions, validate <1s completion and smooth 60 FPS)
+- [X] T040 [P] [US3] Create viewpoint transition benchmark in tests/performance/transition-benchmark.js (measure animation duration, measure frame rate during transitions, validate <1s completion and smooth 60 FPS)
 
 ### Implementation for User Story 3
 
-- [ ] T041 [US3] Implement CameraController class in src/core/camera-controller.js per contracts/camera-controller.md (setViewpoint() with GSAP animation, getCurrentState() method, isAnimating() tracking, stopAnimation() method, reset() method, lookAt() method, event emitters for viewpoint-start/complete/camera-move)
-- [ ] T042 [US3] Configure preset viewpoints in src/config/viewpoints.js (define 5-10 viewpoints per Viewpoint entity from data-model.md: front entrance, living room, kitchen, bedroom, backyard, etc. with proper positions, targets, FOV, categories, ordering)
-- [ ] T043 [US3] Create ViewportControls UI component in src/components/ViewportControls.jsx (render viewpoint list from config, button for each viewpoint with name/icon, highlight active viewpoint, handle viewpoint selection clicks)
-- [ ] T044 [US3] Integrate CameraController into Viewer3D component (instantiate CameraController with camera and constraints, connect to ViewerContext for state sync)
-- [ ] T045 [US3] Implement viewpoint selection handler in src/components/ViewportControls.jsx (call CameraController.setViewpoint() on button click, update ViewerContext activeViewpoint, handle rapid sequential clicks, disable controls during animation)
-- [ ] T046 [US3] Add GSAP camera animation in CameraController (animate camera position with power2.inOut easing, animate target/lookAt point, animate FOV if changed, set 0.8s default duration per research.md, support onComplete callback)
-- [ ] T047 [US3] Update ViewerContext on viewpoint transitions (sync activeViewpoint ID, set CameraState.isAnimating flag during transition, emit events for transition start/complete)
-- [ ] T048 [US3] Add viewpoint hover preview in ViewportControls component (show tooltip with viewpoint description, optional preview thumbnail if available)
-- [ ] T049 [US3] Implement animation interruption handling in CameraController (allow user to interrupt animation with mouse drag, kill GSAP tweens on new interaction, blend smoothly to user control)
+- [X] T041 [US3] Implement CameraController class in src/core/camera-controller.js per contracts/camera-controller.md (setViewpoint() with GSAP animation, getCurrentState() method, isAnimating() tracking, stopAnimation() method, reset() method, lookAt() method, event emitters for viewpoint-start/complete/camera-move)
+- [X] T042 [US3] Configure preset viewpoints in src/config/viewpoints.js (define 5-10 viewpoints per Viewpoint entity from data-model.md: front entrance, living room, kitchen, bedroom, backyard, etc. with proper positions, targets, FOV, categories, ordering)
+- [X] T043 [US3] Create ViewportControls UI component in src/components/ViewportControls.jsx (render viewpoint list from config, button for each viewpoint with name/icon, highlight active viewpoint, handle viewpoint selection clicks)
+- [X] T044 [US3] Integrate CameraController into Viewer3D component (instantiate CameraController with camera and constraints, connect to ViewerContext for state sync)
+- [X] T045 [US3] Implement viewpoint selection handler in src/components/ViewportControls.jsx (call CameraController.setViewpoint() on button click, update ViewerContext activeViewpoint, handle rapid sequential clicks, disable controls during animation)
+- [X] T046 [US3] Add GSAP camera animation in CameraController (animate camera position with power2.inOut easing, animate target/lookAt point, animate FOV if changed, set 0.8s default duration per research.md, support onComplete callback)
+- [X] T047 [US3] Update ViewerContext on viewpoint transitions (sync activeViewpoint ID, set CameraState.isAnimating flag during transition, emit events for transition start/complete)
+- [X] T048 [US3] Add viewpoint hover preview in ViewportControls component (show tooltip with viewpoint description, optional preview thumbnail if available)
+- [X] T049 [US3] Implement animation interruption handling in CameraController (allow user to interrupt animation with mouse drag, kill GSAP tweens on new interaction, blend smoothly to user control)
 - [ ] T050 [US3] Run viewpoint transition benchmarks for User Story 3 (validate <1s transitions, 60 FPS during animation, smooth easing)
 
 **Checkpoint**: All user stories should now be independently functional - complete 3D house viewer with viewing, interaction, and guided navigation
