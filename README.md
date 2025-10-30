@@ -1,11 +1,16 @@
 # Speckit学习
 
 五个步骤：
-/speckit.constitution 定义规范
-/speckit.specify
-/speckit.plan
-/speckit.tasks
-/speckit.implement
+1. /speckit.constitution 定义规范(如/speckit.constitution Create principles focused on code quality, testing standards, user experience consistency, and performance requirements)
+
+2. /speckit.specify 描述特征需求(比如说：我要创建一个web应用，包含用户登录、数据可视化等功能 || 我要创建一个移动应用，包含拍照上传、社交分享等功能 || 我要创建一个游戏，包含角色扮演、任务系统等功能)
+
+3. /speckit.plan 描述使用的技术栈
+
+4. /speckit.tasks
+
+5. /speckit.implement
+
 
 
 # Speckit学习-2048游戏 :sparkles:
