@@ -9,7 +9,7 @@
 
 4. /speckit.tasks 直接执行命令，生成tasks.md可执行的逻辑型任务清单
 
-5. /speckit.implement 直接执行命令，开始生成代码
+5. /speckit.implement 直接执行命令，会根据tasks.md任务清单开始生成代码，每完成一个任务就会更新tasks.md的状态，直到所有任务完成。
 
 
 
