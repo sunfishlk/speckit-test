@@ -1,0 +1,29 @@
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #bbada0;
+  padding: 12px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1;
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .grid-container {
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .grid-row {
+    gap: 15px;
+  }
+}

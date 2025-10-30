@@ -1,0 +1,183 @@
+.game {
+  width: 90vw;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  touch-action: none;
+  user-select: none;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.game-title {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #776e65;
+  margin: 0;
+}
+
+.scoreboard {
+  display: flex;
+  gap: 10px;
+}
+
+.score-container {
+  background-color: #bbada0;
+  border-radius: 8px;
+  padding: 10px 20px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.score-label {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #eee4da;
+  margin-bottom: 4px;
+}
+
+.score-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.game-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.new-game-btn {
+  background-color: #8f7a66;
+  color: #f9f6f2;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 150ms ease-in-out;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.new-game-btn:hover {
+  background-color: #9f8a76;
+}
+
+.new-game-btn:active {
+  background-color: #7f6a56;
+}
+
+.game-instructions {
+  font-size: 0.9rem;
+  color: #776e65;
+  margin: 0;
+}
+
+.game-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 100;
+  animation: overlay-fade-in 300ms ease-in-out;
+}
+
+.overlay-content {
+  text-align: center;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.overlay-content h2 {
+  font-size: 3rem;
+  margin: 0 0 20px 0;
+  color: #776e65;
+}
+
+.overlay-content p {
+  font-size: 1.5rem;
+  color: #776e65;
+  margin: 0 0 30px 0;
+}
+
+.overlay-content button {
+  background-color: #8f7a66;
+  color: #f9f6f2;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 0 10px;
+  min-width: 44px;
+  min-height: 44px;
+  transition: background-color 150ms ease-in-out;
+}
+
+.overlay-content button:hover {
+  background-color: #9f8a76;
+}
+
+.overlay-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.game-overlay-won .overlay-content h2 {
+  color: #edc22e;
+}
+
+.game-overlay-lost .overlay-content h2 {
+  color: #ff6b6b;
+}
+
+@keyframes overlay-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-title {
+    font-size: 3rem;
+  }
+
+  .game-instructions {
+    display: none;
+  }
+
+  .overlay-content {
+    padding: 30px 20px;
+  }
+
+  .overlay-content h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .game {
+    width: 500px;
+  }
+}

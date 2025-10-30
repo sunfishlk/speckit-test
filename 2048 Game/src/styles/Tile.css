@@ -1,0 +1,111 @@
+.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-weight: bold;
+  border-radius: 8px;
+  transition: transform 150ms ease-in-out;
+  will-change: transform;
+}
+
+.tile-empty {
+  background-color: rgba(238, 228, 218, 0.35);
+}
+
+.tile-2 {
+  background-color: #eee4da;
+  color: #776e65;
+}
+
+.tile-4 {
+  background-color: #ede0c8;
+  color: #776e65;
+}
+
+.tile-8 {
+  background-color: #f2b179;
+  color: #f9f6f2;
+}
+
+.tile-16 {
+  background-color: #f59563;
+  color: #f9f6f2;
+}
+
+.tile-32 {
+  background-color: #f67c5f;
+  color: #f9f6f2;
+}
+
+.tile-64 {
+  background-color: #f65e3b;
+  color: #f9f6f2;
+}
+
+.tile-128 {
+  background-color: #edcf72;
+  color: #f9f6f2;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+}
+
+.tile-256 {
+  background-color: #edcc61;
+  color: #f9f6f2;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+}
+
+.tile-512 {
+  background-color: #edc850;
+  color: #f9f6f2;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+}
+
+.tile-1024 {
+  background-color: #edc53f;
+  color: #f9f6f2;
+  font-size: clamp(1rem, 3.5vw, 1.8rem);
+}
+
+.tile-2048 {
+  background-color: #edc22e;
+  color: #f9f6f2;
+  font-size: clamp(1rem, 3.5vw, 1.8rem);
+}
+
+.tile-4096 {
+  background-color: #3c3a32;
+  color: #f9f6f2;
+  font-size: clamp(1rem, 3.5vw, 1.8rem);
+}
+
+.tile-new {
+  animation: tile-appear 200ms ease-in-out;
+}
+
+.tile-merged {
+  animation: tile-merge 200ms ease-in-out;
+}
+
+@keyframes tile-appear {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes tile-merge {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
