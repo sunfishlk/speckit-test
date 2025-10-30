@@ -9,7 +9,7 @@
 
 4. /speckit.tasks 直接执行命令，生成tasks.md可执行的逻辑型任务清单
 
-5. /speckit.implement 直接执行命令，开始生成代码 1
+5. /speckit.implement 直接执行命令，开始生成代码
 
 
 
@@ -27,4 +27,4 @@
 
 实现效果如图：
 
-![alt text](image-1.png) 1
+![alt text](image-1.png)
