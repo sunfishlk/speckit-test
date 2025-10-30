@@ -2,7 +2,7 @@
  * @fileoverview Viewpoint selection UI component
  */
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useViewer } from '../context/ViewerContext'
 import { VIEWPOINTS } from '../config/viewpoints'
 
@@ -17,6 +17,8 @@ import { VIEWPOINTS } from '../config/viewpoints'
 function ViewpointControls({ onViewpointSelect, disabled = false }) {
   const { state } = useViewer()
   const [hoveredViewpoint, setHoveredViewpoint] = useState(null)
+  const [focusedIndex, setFocusedIndex] = useState(0)
+  const buttonRefs = useRef([])
 
   const handleViewpointClick = (viewpoint) => {
     if (disabled || state.camera.isAnimating) {
@@ -29,6 +31,40 @@ function ViewpointControls({ onViewpointSelect, disabled = false }) {
     return state.activeViewpoint === viewpointId
   }
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (disabled || state.camera.isAnimating) return
+
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault()
+          setFocusedIndex(prev => Math.min(prev + 1, VIEWPOINTS.length - 1))
+          break
+        case 'ArrowUp':
+          e.preventDefault()
+          setFocusedIndex(prev => Math.max(prev - 1, 0))
+          break
+        case 'Enter':
+          e.preventDefault()
+          if (VIEWPOINTS[focusedIndex]) {
+            onViewpointSelect(VIEWPOINTS[focusedIndex])
+          }
+          break
+        default:
+          break
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [focusedIndex, disabled, state.camera.isAnimating, onViewpointSelect])
+
+  useEffect(() => {
+    if (buttonRefs.current[focusedIndex]) {
+      buttonRefs.current[focusedIndex].focus()
+    }
+  }, [focusedIndex])
+
   const groupedViewpoints = VIEWPOINTS.reduce((acc, vp) => {
     if (!acc[vp.category]) {
       acc[vp.category] = []
@@ -38,35 +74,43 @@ function ViewpointControls({ onViewpointSelect, disabled = false }) {
   }, {})
 
   return (
-    <div style={styles.container}>
-      <h3 style={styles.title}>Viewpoints</h3>
+    <nav style={styles.container} aria-label="Viewpoint navigation" role="navigation">
+      <h3 style={styles.title} id="viewpoints-title">Viewpoints</h3>
       
       {Object.entries(groupedViewpoints).map(([category, viewpoints]) => (
-        <div key={category} style={styles.category}>
-          <h4 style={styles.categoryTitle}>
+        <div key={category} style={styles.category} role="group" aria-labelledby={`category-${category}`}>
+          <h4 style={styles.categoryTitle} id={`category-${category}`}>
             {category.charAt(0).toUpperCase() + category.slice(1)}
           </h4>
-          <div style={styles.buttonGrid}>
-            {viewpoints.map(viewpoint => (
-              <button
-                key={viewpoint.id}
-                onClick={() => handleViewpointClick(viewpoint)}
-                onMouseEnter={() => setHoveredViewpoint(viewpoint.id)}
-                onMouseLeave={() => setHoveredViewpoint(null)}
-                disabled={disabled || state.camera.isAnimating}
-                style={{
-                  ...styles.button,
-                  ...(isActive(viewpoint.id) ? styles.buttonActive : {}),
-                  ...(hoveredViewpoint === viewpoint.id && !isActive(viewpoint.id) ? styles.buttonHover : {}),
-                  ...(disabled || state.camera.isAnimating ? styles.buttonDisabled : {})
-                }}
-                aria-label={`View ${viewpoint.name}`}
-                title={viewpoint.description}
-              >
-                <span style={styles.buttonIcon}>{getIcon(viewpoint.icon)}</span>
-                <span style={styles.buttonText}>{viewpoint.name}</span>
-              </button>
-            ))}
+          <div style={styles.buttonGrid} role="list">
+            {viewpoints.map((viewpoint, index) => {
+              const globalIndex = VIEWPOINTS.indexOf(viewpoint)
+              return (
+                <button
+                  key={viewpoint.id}
+                  ref={el => buttonRefs.current[globalIndex] = el}
+                  onClick={() => handleViewpointClick(viewpoint)}
+                  onMouseEnter={() => setHoveredViewpoint(viewpoint.id)}
+                  onMouseLeave={() => setHoveredViewpoint(null)}
+                  disabled={disabled || state.camera.isAnimating}
+                  style={{
+                    ...styles.button,
+                    ...(isActive(viewpoint.id) ? styles.buttonActive : {}),
+                    ...(hoveredViewpoint === viewpoint.id && !isActive(viewpoint.id) ? styles.buttonHover : {}),
+                    ...(disabled || state.camera.isAnimating ? styles.buttonDisabled : {})
+                  }}
+                  aria-label={`Navigate to ${viewpoint.name}. ${viewpoint.description}`}
+                  aria-pressed={isActive(viewpoint.id)}
+                  aria-disabled={disabled || state.camera.isAnimating}
+                  title={viewpoint.description}
+                  tabIndex={0}
+                  role="listitem"
+                >
+                  <span style={styles.buttonIcon} aria-hidden="true">{getIcon(viewpoint.icon)}</span>
+                  <span style={styles.buttonText}>{viewpoint.name}</span>
+                </button>
+              )
+            })}
           </div>
         </div>
       ))}

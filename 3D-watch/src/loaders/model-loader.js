@@ -26,6 +26,8 @@ export class ModelLoader {
     this.gltfLoader = new GLTFLoader()
     this.dracoLoader = null
     this.cache = new Map()
+    this.maxRetries = options.maxRetries || 3
+    this.retryDelay = options.retryDelay || 1000
     
     const dracoPath = options.dracoDecoderPath || MODEL_SETTINGS.DEFAULT_DRACO_PATH
     const enableDraco = options.enableDraco !== false
@@ -36,6 +38,29 @@ export class ModelLoader {
       this.dracoLoader.setDecoderConfig({ type: 'js' })
       this.dracoLoader.preload()
       this.gltfLoader.setDRACOLoader(this.dracoLoader)
+    }
+  }
+
+  /**
+   * Load model with retry mechanism
+   * @param {string} url - Path to GLTF/GLB file
+   * @param {Function} [onProgress] - Progress callback
+   * @param {number} [retryCount=0] - Current retry attempt
+   * @returns {Promise<THREE.Group>} Loaded model
+   */
+  async loadWithRetry(url, onProgress = null, retryCount = 0) {
+    try {
+      return await this.load(url, onProgress)
+    } catch (error) {
+      if (retryCount < this.maxRetries) {
+        const delay = this.retryDelay * Math.pow(2, retryCount)
+        console.warn(`Retry attempt ${retryCount + 1}/${this.maxRetries} for ${url} after ${delay}ms`)
+        
+        await new Promise(resolve => setTimeout(resolve, delay))
+        return this.loadWithRetry(url, onProgress, retryCount + 1)
+      } else {
+        throw new Error(`Failed to load model after ${this.maxRetries} attempts: ${error.message}`)
+      }
     }
   }
 

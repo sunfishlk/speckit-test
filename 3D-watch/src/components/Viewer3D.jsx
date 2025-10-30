@@ -7,6 +7,7 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { useViewer } from '../context/ViewerContext'
 import LoadingIndicator from './LoadingIndicator'
 import ViewpointControls from './ViewpointControls'
+import FallbackMessage from './FallbackMessage'
 import { isWebGLSupported } from '../utils/webgl-detection'
 import { ERROR_MESSAGES, LOADING_STATES } from '../utils/constants'
 import { DEFAULT_MODEL } from '../config/models'
@@ -41,15 +42,7 @@ function Viewer3D({ modelUrl }) {
   }, [])
 
   if (webglError) {
-    return (
-      <div style={styles.errorContainer}>
-        <h2 style={styles.errorTitle}>WebGL Not Supported</h2>
-        <p style={styles.errorMessage}>{webglError}</p>
-        <p style={styles.errorHint}>
-          Please use a modern browser like Chrome, Firefox, Safari, or Edge.
-        </p>
-      </div>
-    )
+    return <FallbackMessage message={webglError} />
   }
 
   const showLoading = state.loading.status === LOADING_STATES.LOADING
