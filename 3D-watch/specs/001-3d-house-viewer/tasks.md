@@ -23,13 +23,13 @@ Single project structure: `src/`, `tests/`, `public/` at repository root per pla
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Initialize React + Vite project with package.json dependencies (React 18+, Three.js, @react-three/fiber, @react-three/drei, GSAP 3.x, Stats.js)
-- [ ] T002 [P] Configure Vite build settings in vite.config.js (GLTF asset handling, Draco decoder paths, tree-shaking for Three.js modules)
-- [ ] T003 [P] Configure ESLint with strict rules in .eslintrc.js (enforce JSDoc comments, naming conventions, no dead code)
-- [ ] T004 [P] Create project directory structure per plan.md (src/components, src/core, src/loaders, src/controllers, src/utils, src/types, src/config, src/assets, tests/performance, public/models, public/draco)
-- [ ] T005 [P] Setup public/index.html entry point with canvas container
-- [ ] T006 [P] Create public/styles.css with global styles and CSS reset
-- [ ] T007 [P] Download and place Draco decoder WASM files in public/draco/
+- [X] T001 Initialize React + Vite project with package.json dependencies (React 18+, Three.js, @react-three/fiber, @react-three/drei, GSAP 3.x, Stats.js)
+- [X] T002 [P] Configure Vite build settings in vite.config.js (GLTF asset handling, Draco decoder paths, tree-shaking for Three.js modules)
+- [X] T003 [P] Configure ESLint with strict rules in .eslintrc.js (enforce JSDoc comments, naming conventions, no dead code)
+- [X] T004 [P] Create project directory structure per plan.md (src/components, src/core, src/loaders, src/controllers, src/utils, src/types, src/config, src/assets, tests/performance, public/models, public/draco)
+- [X] T005 [P] Setup public/index.html entry point with canvas container
+- [X] T006 [P] Create public/styles.css with global styles and CSS reset
+- [X] T007 [P] Download and place Draco decoder WASM files in public/draco/
 
 **Checkpoint**: Project structure ready, dependencies installed, build system configured
 
@@ -41,14 +41,14 @@ Single project structure: `src/`, `tests/`, `public/` at repository root per pla
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T008 [P] Define JSDoc type definitions in src/types/index.js (Vector3, BoundingBox, HouseModel, Viewpoint, CameraState, CameraConstraints, SceneConfiguration, LoadingState)
-- [ ] T009 [P] Create configuration constants in src/utils/constants.js (default camera settings, performance targets, animation durations, interaction thresholds)
-- [ ] T010 [P] Implement performance monitoring utility in src/utils/performance-monitor.js (FPS tracking, memory usage, draw calls, triangle count)
-- [ ] T011 [P] Create animation utilities in src/utils/animation-utils.js (easing helpers, camera path optimization, transition utilities)
-- [ ] T012 Create React Context for viewer state in src/context/ViewerContext.jsx (state structure per data-model.md: currentModel, viewpoints, activeViewpoint, camera, scene, loading, ui, performance)
-- [ ] T013 Implement React ErrorBoundary component in src/components/ErrorBoundary.jsx (catch rendering errors, display user-friendly fallback UI)
-- [ ] T014 [P] Create WebGL capability detection utility in src/utils/webgl-detection.js (check WebGL support, detect version, return capability info)
-- [ ] T015 [P] Implement LoadingIndicator component in src/components/LoadingIndicator.jsx (progress bar, percentage display, loading animation)
+- [X] T008 [P] Define JSDoc type definitions in src/types/index.js (Vector3, BoundingBox, HouseModel, Viewpoint, CameraState, CameraConstraints, SceneConfiguration, LoadingState)
+- [X] T009 [P] Create configuration constants in src/utils/constants.js (default camera settings, performance targets, animation durations, interaction thresholds)
+- [X] T010 [P] Implement performance monitoring utility in src/utils/performance-monitor.js (FPS tracking, memory usage, draw calls, triangle count)
+- [X] T011 [P] Create animation utilities in src/utils/animation-utils.js (easing helpers, camera path optimization, transition utilities)
+- [X] T012 Create React Context for viewer state in src/context/ViewerContext.jsx (state structure per data-model.md: currentModel, viewpoints, activeViewpoint, camera, scene, loading, ui, performance)
+- [X] T013 Implement React ErrorBoundary component in src/components/ErrorBoundary.jsx (catch rendering errors, display user-friendly fallback UI)
+- [X] T014 [P] Create WebGL capability detection utility in src/utils/webgl-detection.js (check WebGL support, detect version, return capability info)
+- [X] T015 [P] Implement LoadingIndicator component in src/components/LoadingIndicator.jsx (progress bar, percentage display, loading animation)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
