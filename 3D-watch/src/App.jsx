@@ -6,6 +6,7 @@
 import { ViewerProvider } from './context/ViewerContext'
 import ErrorBoundary from './components/ErrorBoundary'
 import Viewer3D from './components/Viewer3D'
+import StatsOverlay from './components/StatsOverlay'
 
 /**
  * Main App Component
@@ -18,9 +19,13 @@ function App() {
       <ViewerProvider>
         <div style={styles.container}>
           <Viewer3D />
+          <StatsOverlay initiallyVisible={false} />
           <div style={styles.info}>
             <h1 style={styles.title}>3D House Viewer</h1>
-            <p style={styles.subtitle}>MVP - User Story 1: Basic 3D Viewing</p>
+            <p style={styles.subtitle}>
+              Press <kbd style={styles.kbd}>`</kbd> for FPS stats | 
+              Use viewpoints panel (right) to navigate
+            </p>
           </div>
         </div>
       </ViewerProvider>
@@ -53,7 +58,17 @@ const styles = {
   subtitle: {
     margin: '0.5rem 0 0 0',
     fontSize: '0.9rem',
-    color: '#666'
+    color: '#666',
+    lineHeight: '1.5'
+  },
+  kbd: {
+    backgroundColor: '#f0f0f0',
+    border: '1px solid #ccc',
+    borderRadius: '3px',
+    padding: '2px 6px',
+    fontFamily: 'monospace',
+    fontSize: '0.85em',
+    fontWeight: 'bold'
   }
 }
 

@@ -210,32 +210,6 @@ const styles = {
     height: '100%',
     display: 'block',
     cursor: 'grab'
-  },
-  errorContainer: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '2rem',
-    backgroundColor: '#f5f5f5'
-  },
-  errorTitle: {
-    fontSize: '2rem',
-    marginBottom: '1rem',
-    color: '#d32f2f'
-  },
-  errorMessage: {
-    fontSize: '1.2rem',
-    marginBottom: '1rem',
-    color: '#666',
-    textAlign: 'center'
-  },
-  errorHint: {
-    fontSize: '1rem',
-    color: '#999',
-    textAlign: 'center'
   }
 }
 
