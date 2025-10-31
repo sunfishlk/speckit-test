@@ -5,9 +5,13 @@
 
 2. /speckit.specify 描述特征需求(比如说：我要创建一个web应用，包含用户登录、数据可视化等功能 || 我要创建一个移动应用，包含拍照上传、社交分享等功能 || 我要创建一个游戏，包含角色扮演、任务系统等功能)
 
+(可选步骤：/speckit.clarify 进一步澄清需求，Claude询问用户几个问题，用户回答后，Claude会更新.spec文件)
+
 3. /speckit.plan 描述使用的技术栈
 
 4. /speckit.tasks 直接执行命令，生成tasks.md可执行的逻辑型任务清单
+
+(可选步骤：/speckit.analyze 校验spec/plan/tasks一致性输出冲突和遗漏)
 
 5. /speckit.implement 直接执行命令，会根据tasks.md任务清单开始生成代码，每完成一个任务就会更新tasks.md的状态，直到所有任务完成。
 
@@ -17,6 +21,8 @@
 
 项目根据Speckit框架规范和Claude开发实现。
 
+技术栈：React JavaScript Vite
+
 实现效果如图：
 
 ![alt text](image.png)
@@ -24,6 +30,8 @@
 # Speckit学习-3D看房项目 :house:
 
 项目根据Speckit框架规范和Claude开发实现。
+
+技术栈：React JavaScript Three.js Drei.js Vite
 
 实现效果如图：
 
