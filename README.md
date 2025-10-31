@@ -15,6 +15,32 @@
 
 5. /speckit.implement 直接执行命令，会根据tasks.md任务清单开始生成代码，每完成一个任务就会更新tasks.md的状态，直到所有任务完成。
 
+/speckit.constitution中文示例：
+```
+/speckit.constitution
+
+请使用以下规则：
+
+Writing Style Rules
+1. 受众是"新入职的前端/后端/QA/设计同学"
+2. 优先使用短句；每段 ≤5 行
+3. 专业词首次出现时给白话释义
+4. 每个需求点包含：是什么 / 为什么 / 怎么验收
+5. 禁止空话：删除"全面提升/显著增强"等无证据描述
+
+Output Contract
+1. spec.md 最前方包含《上下文摘要》
+2. 不确定时产出"澄清清单"
+3. 所有表格使用 Markdown 格式
+
+Product Rule
+1. 所有流程要尽可能短，减少用户操作
+2. 要保证功能符合当地法律法规，并以用户的隐私和安全优先/*不可协商*/
+```
+
+speckit开发流程：
+constitution -> specify -> (clarify) -> plan -> tasks -> (analyze) -> implement
+
 
 
 # Speckit学习-2048游戏 :sparkles:
